@@ -1,0 +1,53 @@
+
+# print('Hello world')
+
+# print('Hello world')
+
+# print('Hello world')
+
+
+# #演算
+# print(1+1)
+# print(1-1)
+# print(2*2)
+# print(10/2)
+# print(5%3)
+
+#変数
+# comment = 'l_size'
+# comment_length = 5
+# comment_times = 5.5
+# print(comment)
+
+#条件分岐と関係演算子
+#if else elsif
+# ==, !=, <, >, >=, <=
+
+# if comment_length < 3:
+#   print('dekai!')
+# else:
+#   print('sukunai')
+
+#関数
+# def unko_funbaru(arg):
+#     unko_status = arg
+
+#     if(unko_status < 10):
+#         return 'mada daijobu'
+#     else:
+#         return 'yabai'
+# print(unko_funbaru(5))
+
+#list
+# unko_list = ['unko_small', 'unko_medium', 'unko_large']
+# print(unko_list[1])
+
+#for
+# for index in range(12):
+#     print(unko_funbaru(index))
+
+# for item in unko_list:
+#     print(item)
+
+#with 
+#open()
