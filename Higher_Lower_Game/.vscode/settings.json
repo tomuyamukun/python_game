@@ -1,0 +1,5 @@
+{
+  "python.linting.flake8Enabled": true,
+  "python.linting.enabled": true,
+  "python.pythonPath": "/Users/tomuchan/.local/share/virtualenvs/tomuchan-xKgPo3TO/bin/python"
+}
