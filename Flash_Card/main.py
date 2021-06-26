@@ -5,15 +5,18 @@ from time import sleep
 
 BACKGROUND_COLOR = "#B1DDC6"
 
+word_list = {}
+current_card = {}
+
 # pandasでデータ抽出
 
-data = pd.read_csv("./data/french_words.csv")
-
-data_f = pd.DataFrame(data)
-
-word_list = data_f.to_dict(orient="records")
-
-current_card = {}
+try:
+    data = pd.read_csv("./data/words_to_learn.csv")
+except FileNotFoundError:
+    origin_data = pd.read_csv("./data/french_words.csv")
+    word_list = origin_data.to_dict(orient="records")
+else:
+    word_list = data.to_dict(orient="records")
 
 
 # French -- English
@@ -27,9 +30,17 @@ def change_english():
     canvas.itemconfig(canvas_image, image=card_back)
 
 
+def is_known():
+    word_list.remove(current_card)
+    data = pd.DataFrame(word_list)
+    data.to_csv("data/words_to_learn.csv", index=False)
+
+    next_card()
+
+
 # CreateCard
 
-def create_card():
+def next_card():
     global current_card, flip_timer
 
     window.after_cancel(flip_timer)
@@ -43,6 +54,10 @@ def create_card():
     canvas.itemconfig(card_list, text=current_card["French"], fill="black")
 
     flip_timer = window.after(3000, change_english)
+
+    # new_list = pd.io.json.json_normalize(current_card)
+
+    # new_list.to_csv("filename.csv", mode="a", index=False, header=False)
 
 
 #   UI
@@ -71,18 +86,18 @@ bad_image = PhotoImage(file="./images/wrong.png")
 bad_button = Button(
     image=bad_image,
     highlightthickness=0,
-    command=create_card)
+    command=next_card)
 bad_button.grid(row=1, column=0)
 
 right_image = PhotoImage(file="./images/right.png")
 right_button = Button(
     image=right_image,
     highlightthickness=0,
-    command=create_card)
+    command=is_known)
 right_button.grid(row=1, column=1)
 
 
-create_card()
+next_card()
 
 
 window.mainloop()
